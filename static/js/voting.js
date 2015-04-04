@@ -1,1 +1,5 @@
-fuck.fuckity.fuckfuck
+$(document).ready(function(){
+
+   // jQuery methods go here...
+
+});
