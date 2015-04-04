@@ -3,9 +3,15 @@ function log_to_console(data) {
     console.log(data);
 }
 
+var playlist = [];
+
+function updatePlaylist(data) {
+    playlist = data['playlist']
+}
+
 var messageSocket = {
     'actionFunctionMap': {
-        'update_playlist': log_to_console
+        'update_playlist': updatePlaylist
     },
 
     'onOpen': function() {
