@@ -7,11 +7,19 @@ from database import db_session
 api = Blueprint("api", __name__, url_prefix="/api")
 
 
+class ExistenceError(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return repr(self.value)
+
+
 @api.route("/create_playlist/", methods=["POST"])
 def create_playlist():
     name = request.form.get("name")
 
-    if (name.strip() == ""):
+    if name.strip() == "":
         return json.dumps({"error": "You must specify a name for this playlist"})
 
     p = Playlist(name)
@@ -25,7 +33,7 @@ def create_playlist():
 def search_videos():
     search_term = request.args.get("search_term")
 
-    if (search_term.strip() == ""):
+    if search_term.strip() == "":
         return json.dumps({"error": "You must specify a search term"})
 
     videos = youtube.search_for_videos(search_term)
@@ -62,12 +70,25 @@ def add_video():
 def vote(video_id, up_down):
     video = Playlist.query.get(video_id)
 
+    if video is None:
+        raise ExistenceError("Video does not exist.")
+
     if up_down == "up":
         video.rank += 1
     elif up_down == "down":
         video.rank -= 1
     else:
         raise TypeError("Please either upvote or downvote this video.")
-	
+
     db_session.commit()
 
+
+@api.route("/delete")
+def remove_video(video_id):
+    video = Playlist.query.get(video_id)
+
+    if video is None:
+        raise ExistenceError("Video does not exist.")
+
+    db_session.delete(video)
+    db_session.commit()
