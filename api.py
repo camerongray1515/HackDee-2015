@@ -37,9 +37,10 @@ def search_videos():
     if search_term.strip() == "":
         return jsonify({"error": "You must specify a search term"})
 
-    videos = youtube.search_for_videos(search_term)
+    videos = youtube.search_for_videos(search_term, page=page)
 
     return jsonify(videos)
+
 
 @api.route("/add_video/", methods=["POST"])
 def add_video():
@@ -69,10 +70,9 @@ def add_video():
 
     return jsonify({"success": True})
 
-
-@api.route("/<up_down>/")
-def vote(video_id, up_down):
-    video = Playlist.query.get(video_id)
+@api.route("/<up_down>/", methods=["POST"])
+def vote(up_down):
+    video = Playlist.query.get("video_id")
 
     if video is None:
         raise ExistenceError("Video does not exist.")
@@ -85,6 +85,8 @@ def vote(video_id, up_down):
         raise TypeError("Please either upvote or downvote this video.")
 
     db_session.commit()
+
+    return jsonify(video.rank)
 
 @api.route("/delete")
 def remove_video(video_id):
