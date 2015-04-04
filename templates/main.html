@@ -91,24 +91,6 @@
            </tr>
          </thead>
          <tbody>
-           <tr id='addr0'>
-             <td>
-             insert thumbnail
-             </td>
-             <td>
-             <input type="text" name='name0'  placeholder='Name' class="form-control"/>
-             </td>
-             <td>
-               <p class="text-right">
-                 <th style="width:1%">
-                   <a href="#" class="btn btn-default btn-lg">
-                     <span class="glyphicon glyphicon-plus" id="plusBtn  "></span>
-                   </a>
-                 </th>
-               </p>
-             </td>
-           </tr>
-                     <tr id='addr1'></tr>
          </tbody>
        </table>
      </div>
@@ -137,7 +119,13 @@
              </th>
            </tr>
          </thead>
-         <tbody>
+         <tbody id="video_list">
+          <script type="text/html" id="videos">
+             <tr>
+               <td><img src="[[thumbnail_url]]"></td>
+               <td>[[video_title]]</td>
+             </tr>
+           </script>
          </tbody>
        </table>
      </div>

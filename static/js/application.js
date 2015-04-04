@@ -26,18 +26,12 @@ function pull_videos(){
 			  		       "title": "DJ BAD BOI YA BAS 2K15"});
 
 	for (var i = 0; i < array.length; i++){
-		// var table = document.getElementsByTagName("tbody").item(1);
-		// var row = document.createElement("tr");
-		// var number = document.createElement("td");
-		// var name = document.createElement("td");
-		// var number_text = document.createTextNode(i.toString());
-		// var name_text = array[i]["title"];
-		// number.appendChild(number_text);
-		// name.appendChild(name_text);
-		// row.appendChild(number);
-		// row.appendChild(name);
-		// table.appendChild(row);
 
-		$("#tab_logic").append('<tr><td>' + )
+		template = $("#videos").html();
+        template = template.replace(/\[\[thumbnail_url\]\]/g, array[i]['thumbnail_url']);
+        template = template.replace(/\[\[video_id\]\]/g, array[i]['playlist_id']);
+        template = template.replace(/\[\[video_title\]\]/g, array[i]['title']);
+
+        $("#video_list").append(template);
 	}
 }
