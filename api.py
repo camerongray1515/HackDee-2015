@@ -1,4 +1,4 @@
-import json
+	import json
 import youtube
 from flask import Blueprint, request, jsonify
 from models import Playlist, Video
@@ -66,8 +66,7 @@ def add_video():
 
     return jsonify({"success": True})
 
-
-@api.route("/<up_down>/")
+@api.route("/<vote/", methods=["POST"])
 def vote(video_id, up_down):
     video = Playlist.query.get(video_id)
 
