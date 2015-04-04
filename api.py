@@ -22,10 +22,11 @@ def create_playlist():
 @api.route("/search_videos/")
 def search_videos():
     search_term = request.args.get("search_term")
+    page = request.args.get("page")
 
     if (search_term.strip() == ""):
         return json.dumps({"error": "You must specify a search term"})
 
-    videos = youtube.search_for_videos(search_term)
+    videos = youtube.search_for_videos(search_term, page=page)
 
     return json.dumps(videos)
