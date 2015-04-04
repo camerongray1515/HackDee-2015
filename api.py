@@ -6,6 +6,7 @@ from database import db_session
 
 api = Blueprint("api", __name__, url_prefix="/api")
 
+
 @api.route("/create_playlist/", methods=["POST"])
 def create_playlist():
     name = request.form.get("name")
@@ -19,6 +20,7 @@ def create_playlist():
 
     return json.dumps({"playlist_id": p.id})
 
+
 @api.route("/search_videos/")
 def search_videos():
     search_term = request.args.get("search_term")
@@ -29,6 +31,7 @@ def search_videos():
     videos = youtube.search_for_videos(search_term)
 
     return json.dumps(videos)
+
 
 @api.route("/add_video/", methods=["POST"])
 def add_video():
@@ -51,6 +54,7 @@ def add_video():
     v = Video(playlist_id, slug, thumbnail_url, title)
     db_session.add(v)
     db_session.commit()
+
 
 @api.route("/<up_down>")
 def vote(id, up_down):
