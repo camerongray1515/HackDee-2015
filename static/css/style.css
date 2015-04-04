@@ -1,4 +1,29 @@
+body{
+  background: transparent;
+}
+
 body > div.container.body-content{
-    padding-top: 50px;
     padding-bottom: 20px;
+    padding-top: 50px;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+}
+
+.navbar-custom{
+  background: transparent;
+  border-bottom: transparent;
+}
+
+.intro-header{
+  background-color:gray;
+  background:no-repeat center center;
+  background-attachment:scroll;
+  -webkit-background-size:cover;
+  -moz-background-size:cover;
+  background-size:cover;
+  -o-background-size:cover;
+  padding-bottom:50px
+  width: 100%;
+  height: 300px;
 }
