@@ -44,7 +44,8 @@ var messageSocket = {
 
     'connect': function() {
         try {
-            messageSocket.socket = new WebSocket("ws://" + window.location.host + "/socket/");
+            // TODO: Fix this to not just use localhost
+            messageSocket.socket = new WebSocket("ws://localhost:8000/socket/");
             messageSocket.socket.onopen = messageSocket.onOpen;
             messageSocket.socket.onmessage = messageSocket.onMessage;
             messageSocket.socket.onclose = messageSocket.onClose;
@@ -72,7 +73,22 @@ searching = {
         $.get("/api/search_videos/", {
             "search_term": searchTerm
         }, function(results) {
-            console.log(results);
+            // Get the template, populate it and then append it to the table
+
+
+            for (var i = 0; i < results['results'].length; i++) {
+                result = results['results'][i];
+
+                template = $("#search-result-row").html();
+                template = template.replace(/\[\[thumbnail_url\]\]/g, result['thumbnail']);
+                template = template.replace(/\[\[video_id\]\]/g, result['id']);
+                template = template.replace(/\[\[video_title\]\]/g, result['title']);
+
+                $("#search-results-table").append(template);
+            };
+
+            // Show the modal
+            $('#modal-search-results').modal();
         });
 
         return false;
