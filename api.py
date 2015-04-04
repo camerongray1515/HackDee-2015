@@ -47,6 +47,10 @@ def add_video():
     if playlist_id.strip() == "":
         return jsonify({'error': "You must specify a playlist ID for this video."})
 
+    playlist = Playlist.query.get(playlist_id)
+    if playlist == None:
+        return jsonify({'error': "Playlist not found"})
+
     slug = request.form.get("slug")
     if slug.strip() == "":
         return jsonify({'error': "You must specify a slug for this video."})
