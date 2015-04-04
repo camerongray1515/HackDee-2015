@@ -52,3 +52,5 @@ def add_video():
     v = Video(playlist_id, slug, thumbnail_url, title)
     db_session.add(v)
     db_session.commit()
+
+    return json.dumps({"success": True})
