@@ -55,6 +55,8 @@ def add_video():
     db_session.add(v)
     db_session.commit()
 
+    return json.dumps({"video_id": v.slug})
+
 
 @api.route("/<up_down>")
 def vote(id, up_down):
