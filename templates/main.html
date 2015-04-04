@@ -58,7 +58,7 @@
 <div id="player" class="container" style="margin: 0 auto; display: block"></div>
 
 <div class="container">
-  <form class="form" role="form">
+  <form class="form" role="form" id="search-form">
     <div class="form-group">
       <h4>
         <label for="searchItem">Search:</label>
@@ -71,39 +71,9 @@
 
 <h4>&nbsp;</h4>
 <div class="container">
-  <h4>Search results</h4
   <div class="row clearfix">
      <div class="col-md-12 column">
-       <table class="table table-hover" id="tab_logic">
-         <thead>
-           <tr >
-              <th class="text-left">
-                 Thumbnail
-              </th>
-              <th class="text-left">
-                 Name
-             </th>
-             <th class="text-left">
-               <th style="width: 1%">
-
-               </th>
-             </th>
-           </tr>
-         </thead>
-         <tbody>
-         </tbody>
-       </table>
-     </div>
-   </div>
-  </div>
-</div>
-
-
-<h4>&nbsp;</h4>
-<div class="container">
-  <div class="row clearfix">
-     <div class="col-md-12 column">
-       <table class="table table-hover" id="tab_logic">
+       <table class="table" id="tab_logic">
          <thead>
            <tr >
              <th class="text-left">
@@ -144,5 +114,40 @@
    </div>
    <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
   </div>
+</div>
+
+<div class="modal fade" id="modal-search-results">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search Results</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table" id="search-results-table">
+                  <script type="text/html" id="search-result-row">
+                    <tr>
+                      <td><img src="[[thumbnail_url]]"></td>
+                      <td>[[video_title]]</td>
+                      <td><button class="btn btn-success btn-add-to-playlist" data-video-title="[[video_title]]" data-video-id="[[video_id]]" data-thumbnail-url="[[thumbnail_url]]" data-playlist-id="{{ playlist.id }}">Add to Playlist</button></td>
+                    </tr>
+                  </script>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="modal-connection-lost">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Connection Lost</h4>
+            </div>
+            <div class="modal-body">
+                <p>Connection to the server has been lost, reconnecting, please wait...</p>
+                <div class="loader">Reconnecting...</div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
