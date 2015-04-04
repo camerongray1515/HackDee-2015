@@ -58,6 +58,10 @@ body > div.container.body-content{
   padding-left:50px;
 }
 
+.modal > p{
+  color: black;
+}
+
 /* CSS Animated Loader - http://projects.lukehaas.me/css-loaders/ */
 /*
     The MIT License (MIT)
