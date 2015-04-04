@@ -1,6 +1,5 @@
 body{
   background: transparent;
-  color: #fff;
 }
 
 body > div.container.body-content{
@@ -15,8 +14,6 @@ body > div.container.body-content{
 {
     color: #fff;
 }
-
-.navbar-collapse-1 > ul > li > a{color:#fff}
 
 .navbar-custom{
   background: transparent;
