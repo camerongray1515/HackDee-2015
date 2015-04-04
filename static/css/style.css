@@ -1,6 +1,5 @@
 body{
   background: transparent;
-  color: #fff;
 }
 
 body > div.container.body-content{
@@ -16,23 +15,8 @@ body > div.container.body-content{
     color: #fff;
 }
 
-.navbar-collapse-1 > ul > li > a{color:#fff}
-
 .navbar-custom{
   background: transparent;
   border-bottom: transparent;
   color: #fff;
-}
-
-.intro-header{
-  background-color:gray;
-  background:no-repeat center center;
-  background-attachment:scroll;
-  -webkit-background-size:cover;
-  -moz-background-size:cover;
-  background-size:cover;
-  -o-background-size:cover;
-  padding-bottom:50px
-  width: 100%;
-  height: 300px;
 }
