@@ -82,7 +82,8 @@ def vote(video_id, up_down):
 
     db_session.commit()
 
-
+if video is None:
+        raise ExistenceError("Video does not exist.")
 @api.route("/delete")
 def remove_video(video_id):
     video = Playlist.query.get(video_id)
