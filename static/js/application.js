@@ -49,7 +49,7 @@ function pull_videos(){
 }
 
 function join_playlist(){
-	var playlist = ("#pcode").val();
+	var playlist = $("#pcode").val();
 	console.log(playlist);
 	window.location.replace("/" + playlist + "/");
 	return false;
