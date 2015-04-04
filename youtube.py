@@ -14,7 +14,7 @@ class ConnectionError(Exception):
         return repr(self.value)
 
 
-def search_for_videos(search_term, results_length=10):
+def search_for_videos(search_term, max_results=10):
     youtube = build(API_SERVICE_NAME, API_VERSION, developerKey=API_KEY)
     videos = []
 
@@ -22,7 +22,7 @@ def search_for_videos(search_term, results_length=10):
         result = youtube.search().list(
             q=search_term,
             part="id,snippet",
-            maxResults=results_length
+            maxResults=max_results
         ).execute()
     except HttpError:
         raise ConnectionError("Connection problem.")
@@ -35,8 +35,12 @@ def search_for_videos(search_term, results_length=10):
         else:
             pass
 
-    return videos
+    next_page = result.get("nextPageToken", [])
+    prev_page = result.get("prevPageToken", [])
+
+    return {"results": videos, "next page": next_page, "previous page": prev_page}
 
 if __name__ == '__main__':
     # r = search_for_videos('fedora')
+    # print r
     pass
