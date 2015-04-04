@@ -4,6 +4,7 @@ from database import Base
 from string import ascii_letters
 from random import choice
 
+
 class Playlist(Base):
     __tablename__ = "playlists"
     id = Column(String, primary_key=True)
