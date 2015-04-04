@@ -1,4 +1,39 @@
 {% extends "base.html" %}
 {% block body %}
-<p>Hello World</p>
+<h4>
+  <label for="current">Currently playing:</label>
+</h4>
+<button type="button" class="btn btn-default btn-lg">Show</button>
+
+<h4>&nbsp;</h4>
+<div class="container">
+    <div class="row clearfix">
+		<div class="col-md-12 column">
+			<table class="table table-bordered table-hover" id="tab_logic">
+				<thead>
+					<tr >
+						<th class="text-center">
+							#
+						</th>
+						<th class="text-center">
+							Url
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id='addr0'>
+						<td>
+						1
+						</td>
+						<td>
+						<input type="text" name='name0'  placeholder='Enter the Url' class="form-control"/>
+						</td>
+					</tr>
+                    <tr id='addr1'></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
+</div>
 {% endblock %}
