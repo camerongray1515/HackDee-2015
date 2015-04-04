@@ -5,13 +5,11 @@ function log_to_console(data) {
 
 var messageSocket = {
     'actionFunctionMap': {
-        'submitvote': {
-            'update_playlist': log_to_console
-        }
+        'update_playlist': log_to_console
     },
 
     'onOpen': function() {
-        // We need to identify with the socket telling it our playlist slug and realm
+        // We need to identify with the socket telling it our playlist slug
         idData = {
             'playlist_id': messageSocket.playlist_id,
         }
@@ -25,7 +23,7 @@ var messageSocket = {
         var data = JSON.parse(msg.data);
 
         // Now call the function from the map using data object as the only attribute
-        messageSocket.actionFunctionMap[messageSocket.realm][data.action](data);
+        messageSocket.actionFunctionMap[data.action](data);
     },
 
     'onClose': function() {

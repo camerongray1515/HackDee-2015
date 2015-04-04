@@ -3,9 +3,13 @@ import youtube
 from flask import Blueprint, request, jsonify
 from models import Playlist, Video
 from database import db_session
+from redis import StrictRedis
 
 api = Blueprint("api", __name__, url_prefix="/api")
 
+redis = StrictRedis(host="localhost",
+                    port=6379,
+                    db=1)
 
 class ExistenceError(Exception):
     def __init__(self, value):
@@ -67,6 +71,28 @@ def add_video():
     v = Video(playlist_id, slug, thumbnail_url, title)
     db_session.add(v)
     db_session.commit()
+
+    # Now get the updated playlist and send it to the client
+    videos = Video.query.filter(Video.playlist_id==playlist_id).order_by("rank desc")
+
+    playlist = []
+    for video in videos:
+        playlist_entry = {
+            "playlist_id": playlist_id,
+            "slug": video.id,
+            "thumbnail_url": video.thumbnail_url,
+            "title": video.title,
+            "rank": video.rank
+        }
+
+        playlist.append(playlist_entry)
+
+    data = {
+        "action": "update_playlist",
+        "playlist": playlist
+    }
+
+    redis.publish(playlist_id, json.dumps(data))
 
     return jsonify({"success": True})
 
