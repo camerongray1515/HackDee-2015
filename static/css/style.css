@@ -1,5 +1,6 @@
 body{
   background: transparent;
+  color: #fff;
 }
 
 body > div.container.body-content{
@@ -9,10 +10,18 @@ body > div.container.body-content{
     padding-right: 0px;
     width: 100%;
 }
+.navbar-default
+.navbar-brand
+{
+    color: #fff;
+}
+
+.navbar-collapse-1 > ul > li > a{color:#fff}
 
 .navbar-custom{
   background: transparent;
   border-bottom: transparent;
+  color: #fff;
 }
 
 .intro-header{
