@@ -66,9 +66,9 @@ def add_video():
 
     return jsonify({"success": True})
 
-@api.route("/<vote/", methods=["POST"])
-def vote(video_id, up_down):
-    video = Playlist.query.get(video_id)
+@api.route("/<up_down>/", methods=["POST"])
+def vote(up_down):
+    video = Playlist.query.get("video_id")
 
     if video is None:
         raise ExistenceError("Video does not exist.")
