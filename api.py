@@ -60,8 +60,8 @@ def add_video():
 
 
 @api.route("/<up_down>")
-def vote(id, up_down):
-    video = Playlist.query.get(id)
+def vote(video_id, up_down):
+    video = Playlist.query.get(video_id)
 
     if up_down == "up":
         video.rank += 1
@@ -69,3 +69,5 @@ def vote(id, up_down):
         video.rank -= 1
     else:
         raise TypeError("Please either upvote or downvote this video.")
+
+    db_session.commit()
