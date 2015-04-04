@@ -64,3 +64,21 @@ var messageSocket = {
         $('#modal-connection-lost').modal('hide');
     }
 }
+
+searching = {
+    'doSearch': function() {
+        searchTerm = $("#searchItem").val();
+
+        $.get("/api/search_videos/", {
+            "search_term": searchTerm
+        }, function(results) {
+            console.log(results);
+        });
+
+        return false;
+    }
+}
+
+$(document).ready(function() {
+    $("#search-form").submit(searching.doSearch);
+});

@@ -9,7 +9,7 @@
 </div>
 
 <div class="container">
-  <form class="form" role="form">
+  <form class="form" role="form" id="search-form">
     <div class="form-group">
       <h4>
         <label for="searchItem">Search:</label>
@@ -69,6 +69,19 @@
    </div>
    <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
   </div>
+</div>
+
+<div class="modal fade" id="modal-search-results">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Search Results</h4>
+            </div>
+            <div class="modal-body">
+                <div id="search-results"></div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="modal fade" data-backdrop="static" id="modal-connection-lost">

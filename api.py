@@ -37,10 +37,9 @@ def search_videos():
     if search_term.strip() == "":
         return jsonify({"error": "You must specify a search term"})
 
-    videos = youtube.search_for_videos(search_term, page=page)
+    videos = youtube.search_for_videos(search_term)
 
     return jsonify(videos)
-
 
 @api.route("/add_video/", methods=["POST"])
 def add_video():
