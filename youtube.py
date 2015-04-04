@@ -14,16 +14,24 @@ class ConnectionError(Exception):
         return repr(self.value)
 
 
-def search_for_videos(search_term, max_results=10):
+def search_for_videos(search_term, max_results=10, page=None):
     youtube = build(API_SERVICE_NAME, API_VERSION, developerKey=API_KEY)
     videos = []
 
     try:
-        result = youtube.search().list(
-            q=search_term,
-            part="id,snippet",
-            maxResults=max_results
-        ).execute()
+        if page is None:
+            result = youtube.search().list(
+                q=search_term,
+                part="id,snippet",
+                maxResults=max_results
+            ).execute()
+        else:
+            result = youtube.search().list(
+                q=search_term,
+                part="id,snippet",
+                pageToken=page,
+                maxResults=max_results
+            )
     except HttpError:
         raise ConnectionError("Connection problem.")
 
