@@ -15,7 +15,7 @@ body > div.container.body-content{
     color: #fff;
 }
 
-.navbar-inverse .navbar-nav>li>a 
+.navbar-inverse .navbar-nav>li>a
 {
     color: #fff;
 }
@@ -23,6 +23,9 @@ body > div.container.body-content{
 .navbar-inverse{
   background: rgba(34, 34, 34, 0.42);
   border-bottom: transparent;
+  border-right: transparent;
+  border-left: transparent;
+  border-top: transparent;
   color: #fff;
 }
 
