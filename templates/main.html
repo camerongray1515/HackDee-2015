@@ -66,4 +66,18 @@
    <a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
   </div>
 </div>
+
+<div class="modal fade" data-backdrop="static" id="modal-connection-lost">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Connection Lost</h4>
+            </div>
+            <div class="modal-body">
+                <p>Connection to the server has been lost, reconnecting, please wait...</p>
+                <div class="loader">Reconnecting...</div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
