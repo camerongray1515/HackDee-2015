@@ -1,6 +1,6 @@
 $(document).ready(function(){
-	$("#newSubmit").click(add_playlist);
-	$("joinSubmit").click(join_playlist);
+	$("#create_playlist_form").submit(add_playlist);
+	$("#join_playlist_form").submit(join_playlist);
 	$("#search-results-table").on("click", ".btn-add-to-playlist", submitVideo);
 });
 
@@ -50,5 +50,7 @@ function pull_videos(){
 
 function join_playlist(){
 	var playlist = ("#pcode").val();
+	console.log(playlist);
 	window.location.replace("/" + playlist + "/");
+	return false;
 }
