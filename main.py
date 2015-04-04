@@ -9,5 +9,9 @@ app.register_blueprint(api)
 def index():
     return render_template("base.html")
 
+@app.route("/main")
+def main():
+    return render_template("main.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
