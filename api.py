@@ -68,3 +68,6 @@ def vote(video_id, up_down):
         video.rank -= 1
     else:
         raise TypeError("Please either upvote or downvote this video.")
+	
+    db_session.commit()
+
