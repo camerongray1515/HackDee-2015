@@ -6,5 +6,10 @@ function add_playlist(){
 	$.post("/api/create_playlist/",
 	{
 		name: $("#playlistname").val()
+	},
+	function(data){
+		
 	});
+
+
 }
