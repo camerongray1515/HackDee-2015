@@ -58,3 +58,6 @@ target/
 
 # SQLite Development Database
 *.sqlite
+
+# Redis dumps
+*.rdb
