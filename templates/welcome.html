@@ -6,7 +6,12 @@
 
 {% block body %}
 
+<div class="large-title">
 <h1>Jack</h1>
+<h2>For sharing your mad banging rave choons.</h2>
+</div>
+
+<div class = "control-row">
 
 <div class ="col-lg-6">
   <form class="form" role="form">
@@ -16,7 +21,7 @@
       </h4>
       <input type="text" class="form-control input-lg" id="playlistname" placeholder="Enter a name for your playlist">
     </div>
-    <button type="submit" class="btn btn-default btn-lg" id="newSubmit">Create Playlist</button>
+    <button type="submit" class="btn btn-default btn-lg" id="newSubmit">Create new playlist</button>
   </form>
 </div>
 
@@ -28,8 +33,10 @@
       </h4>
       <input type="text" class="form-control input-lg" id="pcode" placeholder="Enter playlist code">
     </div>
-    <button type="submit" class="btn btn-default btn-lg" id="joinSubmit">Join!</button>
+    <button type="submit" class="btn btn-default btn-lg" id="joinSubmit">Join existing playlist</button>
   </form>
+</div>
+
 </div>
 
 {% endblock %}
