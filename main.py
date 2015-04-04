@@ -1,9 +1,11 @@
 from flask import Flask, render_template, request, Response
 from api import api
+from sockets import sockets
 
 app = Flask(__name__)
 app.secret_key = 'Rxst46YTt6cs38EE'
 app.register_blueprint(api)
+app.register_blueprint(sockets)
 
 @app.route("/")
 def index():

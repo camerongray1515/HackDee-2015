@@ -59,7 +59,7 @@ def add_video():
     return json.dumps({"success": True})
 
 
-@api.route("/<up_down>")
+@api.route("/<up_down>/")
 def vote(video_id, up_down):
     video = Playlist.query.get(video_id)
 
