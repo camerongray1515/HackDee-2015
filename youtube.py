@@ -24,8 +24,6 @@ def search_for_videos(search_term, results_length=10):
         else:
             pass
 
-    print videos
-
     return videos
 
 if __name__ == '__main__':
