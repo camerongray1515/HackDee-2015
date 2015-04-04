@@ -1,5 +1,6 @@
 $(document).ready(function(){
-	$("#newSubmit").click(add_playlist)
+	$("#newSubmit").click(add_playlist);
+	$("joinSubmit").click(join_playlist);
 });
 
 function add_playlist(){
@@ -31,7 +32,11 @@ function pull_videos(){
         template = template.replace(/\[\[thumbnail_url\]\]/g, array[i]['thumbnail_url']);
         template = template.replace(/\[\[video_id\]\]/g, array[i]['playlist_id']);
         template = template.replace(/\[\[video_title\]\]/g, array[i]['title']);
-
         $("#video_list").append(template);
 	}
+}
+
+function join_playlist(){
+	var playlist = ("#pcode").val();
+	window.location.replace("/" + playlist + "/");
 }
