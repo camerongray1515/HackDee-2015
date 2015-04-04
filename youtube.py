@@ -31,7 +31,7 @@ def search_for_videos(search_term, max_results=10, page=None):
                 part="id,snippet",
                 pageToken=page,
                 maxResults=max_results
-            )
+            ).execute()
     except HttpError:
         raise ConnectionError("Connection problem.")
 
