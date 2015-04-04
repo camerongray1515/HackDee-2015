@@ -5,6 +5,6 @@ $(document).ready(function(){
 function add_playlist(){
 	$.post("/api/create_playlist/",
 	{
-		name: $(#playlistname)
+		name: $("#playlistname").val()
 	});
 }
