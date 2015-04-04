@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block body %}
 <div class="container">
+  <script type="text/javascript">
+    $(document).ready(function(){
+      window.onload = pull_videos;
+    });
+  </script>
   <script>
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
@@ -71,7 +76,7 @@
      <div class="col-md-12 column">
        <table class="table table-hover" id="tab_logic">
          <thead>
-           <tr >
+           <tr >javascript
               <th class="text-left">
                  Thumbnail
               </th>
@@ -133,27 +138,6 @@
            </tr>
          </thead>
          <tbody>
-           <tr id='addr0'>
-             <td>
-             1
-             </td>
-             <td>
-             <input type="text" name='name0'  placeholder='Name' class="form-control"/>
-             </td>
-             <td>
-             <p class="text-right">
-               <th style="width:11%">
-                 <a href="#" class="btn btn-default btn-lg" id="thumbUp">
-                   <span class="glyphicon glyphicon-thumbs-up"></span>
-                 </a>
-                 <a href="#" class="btn btn-default btn-lg">
-                   <span class="glyphicon glyphicon-thumbs-down" id="thumbDown  "></span>
-                 </a>
-               </th>
-             </p>
-             </td>
-           </tr>
-                     <tr id='addr1'></tr>
          </tbody>
        </table>
      </div>
