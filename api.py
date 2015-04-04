@@ -32,11 +32,12 @@ def create_playlist():
 @api.route("/search_videos/")
 def search_videos():
     search_term = request.args.get("search_term")
+    page = request.args.get("page")
 
     if search_term.strip() == "":
         return json.dumps({"error": "You must specify a search term"})
 
-    videos = youtube.search_for_videos(search_term)
+    videos = youtube.search_for_videos(search_term, page=page)
 
     return json.dumps(videos)
 
@@ -63,10 +64,10 @@ def add_video():
     db_session.add(v)
     db_session.commit()
 
-    return json.dumps({"video_id": v.slug})
+    return json.dumps({"success": True})
 
 
-@api.route("/<up_down>")
+@api.route("/<up_down>/")
 def vote(video_id, up_down):
     video = Playlist.query.get(video_id)
 
@@ -82,8 +83,6 @@ def vote(video_id, up_down):
 
     db_session.commit()
 
-if video is None:
-        raise ExistenceError("Video does not exist.")
 @api.route("/delete")
 def remove_video(video_id):
     video = Playlist.query.get(video_id)
