@@ -51,3 +51,14 @@ def add_video():
     v = Video(playlist_id, slug, thumbnail_url, title)
     db_session.add(v)
     db_session.commit()
+
+@api.route("/<up_down>")
+def vote(id, up_down):
+    video = Playlist.query.get(id)
+
+    if up_down == "up":
+        video.rank += 1
+    elif up_down == "down":
+        video.rank -= 1
+    else:
+        raise TypeError("Please either upvote or downvote this video.")
