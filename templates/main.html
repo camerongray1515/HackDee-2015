@@ -21,7 +21,6 @@
         player = new YT.Player('player', {
           height: '390',
           width: '640',
-          videoId: 'M7lc1UVf-VE',
           events: {
             'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
@@ -39,7 +38,7 @@
       //    the player should play for six seconds and then stop.
       var done = false;
       function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
+        if (event.data == YT.PlayerState.ENDED) {
           setTimeout(stopVideo, 6000);
           done = true;
         }
