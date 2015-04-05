@@ -32,24 +32,15 @@ function submitVideo() {
 	});
 }
 
-function pull_videos(){
-	var array = new Array({"playlist_id": "MaJnd",
-			  		       "slug": "aLMU_84BLLM",
-			  		       "thumbnail_url": "http://img.photobucket.com/albums/v233/thelittleredone/neds.jpg",
-			  		       "title": "DJ BAD BOI YA BAS 2K15",
-			  		   	   "rank": 17},
-			  		   	   {"playlist_id": "MaJnd",
-			  		   	    "slug": "rPRkYWVinF0",
-			  		   	    "thumbnail_url": "http://i.ytimg.com/vi/rPRkYWVinF0/hqdefault.jpg",
-			  		   	    "title": "Chase & Status",
-			  		   	    "rank": 1700});
+function update_playlist(){
+	$("#video_list").html(""); // Clear list out before we add new entries
 
-	for (var i = 0; i < array.length; i++){
+	for (var i = 0; i < playlist.length; i++){
 
-		template = $("#videos").html();
-        template = template.replace(/\[\[thumbnail_url\]\]/g, array[i]['thumbnail_url']);
-        template = template.replace(/\[\[video_id\]\]/g, array[i]['playlist_id']);
-        template = template.replace(/\[\[video_title\]\]/g, array[i]['title']);
+		template = $("#playlist-entry-template").html();
+        template = template.replace(/\[\[thumbnail_url\]\]/g, playlist[i]['thumbnail_url']);
+        template = template.replace(/\[\[video_id\]\]/g, playlist[i]['playlist_id']);
+        template = template.replace(/\[\[video_title\]\]/g, playlist[i]['title']);
         $("#video_list").append(template);
 	}
 }
@@ -61,13 +52,13 @@ function join_playlist(){
 	return false;
 }
 
-function get_highest_rank(array){
+function get_highest_ranked_video(){
 	var slug = "";
 	var max = -999;
-	for (var i = 0; i < array.length; i++){
-		if (array[i]["rank"].toString() > max && array[i]["played"] == false){
-			max = array[i]["rank"];
-			slug = array[i]["slug"];
+	for (var i = 0; i < playlist.length; i++){
+		if (playlist[i]["rank"].toString() > max && playlist[i]["played"] == false){
+			max = playlist[i]["rank"];
+			slug = playlist[i]["slug"];
 		}
 	}
 	return slug;

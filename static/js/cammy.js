@@ -7,6 +7,9 @@ var playlist = [];
 
 function updatePlaylist(data) {
     playlist = data['playlist']
+
+    // Update the table to display the new playlist
+    update_playlist();
 }
 
 var messageSocket = {
