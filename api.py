@@ -125,20 +125,8 @@ def get_playlist():
     # Now get the updated playlist and send it to the client
     videos = Video.query.filter(Video.playlist_id==playlist_id).order_by("rank desc")
 
-    playlist = []
-    for video in videos:
-        playlist_entry = {
-            "playlist_id": playlist_id,
-            "slug": video.slug,
-            "thumbnail_url": video.thumbnail_url,
-            "title": video.title,
-            "rank": video.rank
-        }
-
-        playlist.append(playlist_entry)
-
     data = {
-        "playlist": playlist
+        "playlist": Playlist.get_videos(playlist_id)
     }
 
     return jsonify(data)
