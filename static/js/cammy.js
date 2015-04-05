@@ -3,15 +3,22 @@ function log_to_console(data) {
     console.log(data);
 }
 
+var playlist = [];
+
+function updatePlaylist(data) {
+    playlist = data['playlist']
+
+    // Update the table to display the new playlist
+    update_playlist();
+}
+
 var messageSocket = {
     'actionFunctionMap': {
-        'submitvote': {
-            'update_playlist': log_to_console
-        }
+        'update_playlist': updatePlaylist
     },
 
     'onOpen': function() {
-        // We need to identify with the socket telling it our playlist slug and realm
+        // We need to identify with the socket telling it our playlist slug
         idData = {
             'playlist_id': messageSocket.playlist_id,
         }
@@ -25,7 +32,7 @@ var messageSocket = {
         var data = JSON.parse(msg.data);
 
         // Now call the function from the map using data object as the only attribute
-        messageSocket.actionFunctionMap[messageSocket.realm][data.action](data);
+        messageSocket.actionFunctionMap[data.action](data);
     },
 
     'onClose': function() {

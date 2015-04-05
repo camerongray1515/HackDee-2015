@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 {% block body %}
 <div class="container">
+  <input type="hidden" id="playlist-id" value="{{ playlist.id }}">
   <script type="text/javascript">
     $(document).ready(function(){
-      window.onload = pull_videos;
+      window.onload = load_playlist;
     });
   </script>
   <script>
+    var curr_video = "";
+
+
       // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
 
@@ -22,25 +26,40 @@
           height: '390',
           width: '640',
           events: {
-            'onReady': onPlayerReady,
+            // 'onReady': onPlayerReady,
             'onStateChange': onPlayerStateChange
           }
         });
       }
 
       // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        event.target.playVideo();
+      // function onPlayerReady(event) {
+      //   var slug = get_highest_ranked_video();
+      //   player.loadVideoById(slug, 0);
+      //   curr_video = slug;
+      //   event.target.playVideo();
+      // }
+
+      function startPlaying() {
+        var slug = get_highest_ranked_video();
+        player.loadVideoById(slug, 0);
+        curr_video = slug;
+        player.playVideo();
       }
 
       // 5. The API calls this function when the player's state changes.
       //    The function indicates that when playing a video (state=1),
       //    the player should play for six seconds and then stop.
-      var done = false;
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.ENDED) {
-          setTimeout(stopVideo, 6000);
-          done = true;
+          for (var i = 0; i < array.length; i++){
+            if (array[i]["slug"] == curr_video){
+              array[i]["played"] = true;
+            }
+          }
+          var slug = get_highest_ranked_video();
+          player.loadVideoById(slug, 0);
+          event.target.playVideo();
         }
       }
       function stopVideo() {
@@ -91,8 +110,7 @@
              </th>
            </tr>
          </thead>
-         <tbody id="video_list">
-          <script type="text/html" id="videos">
+          <script type="text/html" id="playlist-entry-template">
              <tr>
                <td><img src="[[thumbnail_url]]"></td>
                <td>"[[video_title]]"</td>
@@ -110,6 +128,7 @@
               </td>
              </tr>
            </script>
+         <tbody id="video_list">
 
          </tbody>
        </table>
@@ -153,4 +172,9 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+  // Now start up the socket
+  messageSocket.initialise("{{ playlist.id }}")
+</script>
 {% endblock %}
