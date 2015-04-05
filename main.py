@@ -9,7 +9,7 @@ app.register_blueprint(api)
 
 @app.route("/")
 def index():
-    return render_template("base.html")
+    return render_template("welcome.html")
 
 @app.route("/main")
 def main():
