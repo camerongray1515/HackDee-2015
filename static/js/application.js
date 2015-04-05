@@ -29,7 +29,7 @@ function submitVideo() {
 		'slug': $(this).attr('data-video-id'),
 		'thumbnail_url': $(this).attr('data-thumbnail-url'),
 		'title': $(this).attr('data-video-title')
-	}, function(response) '010', oldCookieValue + "-"{
+	}, function(response) {
 		console.log(response);
 	});
 
@@ -50,7 +50,7 @@ function update_playlist(){
 	}
 }
 
-function load_playlist() {'010', oldCookieValue + "-"
+function load_playlist() {
 	$.get("/api/get_playlist/", {
 		'playlist_id': $('#playlist-id').val()
 	}, function(data) {

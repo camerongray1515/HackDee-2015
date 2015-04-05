@@ -7,7 +7,7 @@ var playlist = [];
 
 // TODO: Rename this
 function updatePlaylist(data) {
-    playlist = data['playlist']
+    playlist = data['playlist'];
 
     // Update the table to display the new playlist
     update_playlist();
