@@ -19,6 +19,8 @@ function add_playlist(){
 			console.log(data["playlist_id"]);
 		}
 	});
+
+	return false;
 }
 
 function submitVideo() {
