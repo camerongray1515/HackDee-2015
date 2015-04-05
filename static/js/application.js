@@ -51,6 +51,7 @@ function load_playlist() {
 	}, function(data) {
 		playlist = data['playlist'];
 		update_playlist();
+		startPlaying();
 	});
 }
 
@@ -63,9 +64,9 @@ function join_playlist(){
 
 function get_highest_ranked_video(){
 	var slug = "";
-	var max = -999;
+	var max = -999; // Todo: Fix this
 	for (var i = 0; i < playlist.length; i++){
-		if (playlist[i]["rank"].toString() > max && playlist[i]["played"] == false){
+		if (playlist[i]["rank"].toString() > max){
 			max = playlist[i]["rank"];
 			slug = playlist[i]["slug"];
 		}

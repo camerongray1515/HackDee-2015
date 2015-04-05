@@ -79,7 +79,7 @@ def add_video():
     for video in videos:
         playlist_entry = {
             "playlist_id": playlist_id,
-            "slug": video.id,
+            "slug": video.slug,
             "thumbnail_url": video.thumbnail_url,
             "title": video.title,
             "rank": video.rank
@@ -135,7 +135,7 @@ def get_playlist():
     for video in videos:
         playlist_entry = {
             "playlist_id": playlist_id,
-            "slug": video.id,
+            "slug": video.slug,
             "thumbnail_url": video.thumbnail_url,
             "title": video.title,
             "rank": video.rank
