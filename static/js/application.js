@@ -45,6 +45,15 @@ function update_playlist(){
 	}
 }
 
+function load_playlist() {
+	$.get("/api/get_playlist/", {
+		'playlist_id': $('#playlist-id').val()
+	}, function(data) {
+		playlist = data['playlist'];
+		update_playlist();
+	});
+}
+
 function join_playlist(){
 	var playlist = $("#pcode").val();
 	console.log(playlist);

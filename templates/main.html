@@ -1,9 +1,10 @@
 {% extends "base.html" %}
 {% block body %}
 <div class="container">
+  <input type="hidden" id="playlist-id" value="{{ playlist.id }}">
   <script type="text/javascript">
     $(document).ready(function(){
-      window.onload = update_playlist;
+      window.onload = load_playlist;
     });
   </script>
   <script>

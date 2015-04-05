@@ -123,3 +123,28 @@ def remove_video(video_id):
 
     db_session.delete(video)
     db_session.commit()
+
+@api.route("/get_playlist/")
+def get_playlist():
+    playlist_id = request.args.get("playlist_id")
+
+    # Now get the updated playlist and send it to the client
+    videos = Video.query.filter(Video.playlist_id==playlist_id).order_by("rank desc")
+
+    playlist = []
+    for video in videos:
+        playlist_entry = {
+            "playlist_id": playlist_id,
+            "slug": video.id,
+            "thumbnail_url": video.thumbnail_url,
+            "title": video.title,
+            "rank": video.rank
+        }
+
+        playlist.append(playlist_entry)
+
+    data = {
+        "playlist": playlist
+    }
+
+    return jsonify(data)
