@@ -38,6 +38,7 @@ function submitVideo() {
 
 function update_playlist(){
 	$("#video_list").html(""); // Clear list out before we add new entries
+	console.log(JSON.stringify(playlist));
 
 	for (var i = 0; i < playlist.length; i++){
 
@@ -105,4 +106,9 @@ function getCookie(cname) {
         if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
     }
     return "";
+}
+
+function on_load() {
+	load_playlist();
+	create_cookie();
 }
