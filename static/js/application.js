@@ -61,25 +61,15 @@ function join_playlist(){
 	return false;
 }
 
-function get_highest_rank(){
-	var array = new Array({"playlist_id": "MaJnd",
-			  		       "slug": "aLMU_84BLLM",
-			  		       "thumbnail_url": "http://img.photobucket.com/albums/v233/thelittleredone/neds.jpg",
-			  		       "title": "DJ BAD BOI YA BAS 2K15",
-			  		   	   "rank": 17},
-			  		   	   {"playlist_id": "MaJnd",
-			  		   	    "slug": "rPRkYWVinF0",
-			  		   	    "thumbnail_url": "http://i.ytimg.com/vi/rPRkYWVinF0/hqdefault.jpg",
-			  		   	    "title": "Chase & Status",
-			  		   	    "rank": 1700});
-
+function get_highest_rank(array){
 	var slug = "";
 	var max = -999;
 	for (var i = 0; i < array.length; i++){
-		if (array[i]["rank"].toString() > max){
+		if (array[i]["rank"].toString() > max && array[i]["played"] == false){
 			max = array[i]["rank"];
+			slug = array[i]["slug"];
 		}
-	return slug;
 	}
+	return slug;
 
 }
