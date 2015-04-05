@@ -52,9 +52,9 @@
       //    the player should play for six seconds and then stop.
       function onPlayerStateChange(event) {
         if (event.data == YT.PlayerState.ENDED) {
-          for (var i = 0; i < array.length; i++){
-            if (array[i]["slug"] == curr_video){
-              array[i]["played"] = true;
+          for (var i = 0; i < playlist.length; i++){
+            if (playlist[i]["slug"] == curr_video){
+              playlist[i]["played"] = true;
             }
           }
           var slug = get_highest_ranked_video();
