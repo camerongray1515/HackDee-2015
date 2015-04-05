@@ -138,8 +138,7 @@ def mark_played():
 
     video = Video.query.filter(Video.playlist_id==playlist_id).filter(Video.slug==video_slug).first()
 
-    video.played = True
-
+    db_session.delete(video)
     db_session.commit()
 
     # Publish to Redis so that all clients update playlist
