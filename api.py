@@ -142,3 +142,24 @@ def get_playlist():
     }
 
     return jsonify(data)
+
+@api.route("/mark_played/", methods=["POST"])
+def mark_played():
+    playlist_id = request.form.get("playlist_id")
+    video_slug = request.form.get("video_slug")
+
+    video = Video.query.filter(Video.playlist_id==playlist_id).filter(Video.slug==video_slug).first()
+
+    video.played = True
+
+    db_session.commit()
+
+    # Publish to Redis so that all clients update playlist
+    data = {
+        "action": "update_playlist",
+        "playlist": Playlist.get_videos(playlist_id)
+    }
+
+    redis.publish(playlist_id, json.dumps(data))
+
+    return jsonify({"success": True})

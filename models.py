@@ -25,7 +25,7 @@ class Playlist(Base):
 
     @staticmethod
     def get_videos(playlist_id):
-        videos = Video.query.filter(Video.playlist_id==playlist_id).order_by("rank desc")
+        videos = Video.query.filter(Video.playlist_id==playlist_id).filter(Video.played==False).order_by("rank desc")
 
         playlist = []
         for video in videos:
@@ -54,7 +54,7 @@ class Video(Base):
     thumbnail_url = Column(String)
     title = Column(String)
     rank = Column(Integer)
-    playing = Column(Boolean)
+    played = Column(Boolean)
 
     def __init__(self, playlist_id, slug, thumbnail_url, title):
         self.playlist_id = playlist_id
@@ -62,4 +62,4 @@ class Video(Base):
         self.thumbnail_url = thumbnail_url
         self.title = title
         self.rank = 0
-        self.playing = False
+        self.played = False

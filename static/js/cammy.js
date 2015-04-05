@@ -5,11 +5,21 @@ function log_to_console(data) {
 
 var playlist = [];
 
+// TODO: Rename this
 function updatePlaylist(data) {
     playlist = data['playlist']
 
     // Update the table to display the new playlist
     update_playlist();
+}
+
+var videos = {
+    'videoPlayed': function(video_slug) {
+        $.post("/api/mark_played/", {
+            'playlist_id': $('#playlist-id').val(),
+            'video_slug': video_slug
+        });
+    }
 }
 
 var messageSocket = {
