@@ -108,7 +108,6 @@ var searching = {
                 template = template.replace(/\[\[thumbnail_url\]\]/g, result['thumbnail']);
                 template = template.replace(/\[\[video_id\]\]/g, result['id']);
                 template = template.replace(/\[\[video_title\]\]/g, result['title']);
-
                 $("#search-results-table").append(template);
             };
 
@@ -120,16 +119,31 @@ var searching = {
     }
 }
 
-var voting = {
+var voting = {  
     'submitVote': function() {
+        var songs = JSON.parse(getCookie("songs"));
         vote_direction = $(this).attr('data-vote-direction');
 
-        $.post("/api/vote/" + vote_direction + "/", {
-            "playlist_id": $('#playlist-id').val(),
-            "video_id": $(this).attr('data-video-id')
-        }, function(data) {
-            console.log(data);
-        });
+        if ($.inArray($(this).attr('data-video-id'), songs) !== -1) {
+            console.log($(this).attr('data-video-id'));
+            console.log(getCookie("songs"));
+            console.log($.inArray($(this).attr('data-video-id'), songs));
+            alert("You can only vote on a song once.");
+        }
+        else {
+            console.log($(this).attr('data-video-id'));
+            console.log(getCookie("songs"));
+            console.log($.inArray($(this).attr('data-video-id'), songs));
+            $.post("/api/vote/" + vote_direction + "/", {
+                "playlist_id": $('#playlist-id').val(),
+                "video_id": $(this).attr('data-video-id')
+            }, function(data) {
+                console.log(data);
+            });
+            songs.push($(this).attr('data-video-id'));
+            console.log(JSON.stringify(songs));
+            document.cookie = "songs=" + JSON.stringify(songs);
+        }
     }
 }
 

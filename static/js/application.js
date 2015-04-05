@@ -29,7 +29,7 @@ function submitVideo() {
 		'slug': $(this).attr('data-video-id'),
 		'thumbnail_url': $(this).attr('data-thumbnail-url'),
 		'title': $(this).attr('data-video-title')
-	}, function(response) {
+	}, function(response) '010', oldCookieValue + "-"{
 		console.log(response);
 	});
 
@@ -50,7 +50,7 @@ function update_playlist(){
 	}
 }
 
-function load_playlist() {
+function load_playlist() {'010', oldCookieValue + "-"
 	$.get("/api/get_playlist/", {
 		'playlist_id': $('#playlist-id').val()
 	}, function(data) {
@@ -90,4 +90,19 @@ function get_next_video(){
 
 	return slug;
 
+}
+
+function create_cookie() {
+	document.cookie = "songs=[]";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length,c.length);
+    }
+    return "";
 }
