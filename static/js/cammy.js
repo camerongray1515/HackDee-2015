@@ -99,6 +99,7 @@ var searching = {
         }, function(results) {
             // Get the template, populate it and then append it to the table
 
+            $("#search-results-table").html("");
 
             for (var i = 0; i < results['results'].length; i++) {
                 result = results['results'][i];

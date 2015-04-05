@@ -30,6 +30,8 @@ function submitVideo() {
 	}, function(response) {
 		console.log(response);
 	});
+
+	
 }
 
 function update_playlist(){

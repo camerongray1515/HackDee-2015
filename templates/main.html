@@ -151,14 +151,14 @@
                 <h4 class="modal-title">Search Results</h4>
             </div>
             <div class="modal-body">
+              <script type="text/html" id="search-result-row">
+                  <tr>
+                    <td><img src="[[thumbnail_url]]"></td>
+                    <td>[[video_title]]</td>
+                    <td><button class="btn btn-success btn-add-to-playlist" data-video-title="[[video_title]]" data-video-id="[[video_id]]" data-thumbnail-url="[[thumbnail_url]]" data-playlist-id="{{ playlist.id }}">Add to Playlist</button></td>
+                   </tr>
+                </script>
                 <table class="table" id="search-results-table">
-                  <script type="text/html" id="search-result-row">
-                    <tr>
-                      <td><img src="[[thumbnail_url]]"></td>
-                      <td>[[video_title]]</td>
-                      <td><button class="btn btn-success btn-add-to-playlist" data-video-title="[[video_title]]" data-video-id="[[video_id]]" data-thumbnail-url="[[thumbnail_url]]" data-playlist-id="{{ playlist.id }}">Add to Playlist</button></td>
-                    </tr>
-                  </script>
                 </table>
             </div>
         </div>
