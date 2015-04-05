@@ -41,7 +41,14 @@
       // }
 
       function startPlaying() {
+        videos.playing = true;
+
         var slug = get_next_video();
+        // If there is no video, don't bother trying to play
+        if (!slug) {
+          return;
+        }
+        
         player.loadVideoById(slug, 0);
         curr_video = slug;
         player.playVideo();
@@ -58,6 +65,10 @@
             }
           }
           var slug = get_next_video();
+          // If there is no video, don't bother trying to play
+          if (!slug) {
+            return;
+          }
           player.loadVideoById(slug, 0);
           event.target.playVideo();
         }
@@ -70,7 +81,11 @@
   <h4>&nbsp;</h4>
 </div>
 
-<div id="player" class="container hidden" style="margin: 0 auto; display: block"></div>
+<div id="player-container" class="hidden container">
+  <div id="player" class="container" style="margin: 0 auto; display: block"></div>
+
+  <div class="alert alert-danger" id="no-video-alert"><span>Notice:</span> There are currently no videos in this playlist, it will start to play once at least one video is added.</div>
+</div>
 
 <div class="container">
   <form class="form" role="form" id="search-form">

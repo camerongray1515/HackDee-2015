@@ -11,9 +11,16 @@ function updatePlaylist(data) {
 
     // Update the table to display the new playlist
     update_playlist();
+
+    // If there is no video playing, start it
+    if (!videos.playing && videos.playerOpen) {
+        startPlaying();
+    }
 }
 
 var videos = {
+    'playing': false,
+    'playerOpen': false,
     'videoPlayed': function(video_slug) {
         $.post("/api/mark_played/", {
             'playlist_id': $('#playlist-id').val(),
@@ -127,7 +134,34 @@ var voting = {
 
 var ui = {
     'showPlayer': function() {
-        $("#player").removeClass("hidden");
+        videos.playerOpen = true;
+        startPlaying();
+        $("#player-container").removeClass("hidden");
+
+        // Work out whether we should show the player or the no video
+        // alert depending on the number of videos in the playlist
+        // Hide both initially so we only show the one we want.
+        $('#player').addClass("hidden");
+        $('#no-video-alert').addClass("hidden");
+
+        if (playlist.length > 0) {
+            $('#player').removeClass("hidden");
+        } else {
+            $('#no-video-alert').removeClass("hidden");
+        }
+
+        // Now hide the "open player" button
+        $("#btn-show-player").addClass("hidden");
+    },
+
+    'transitionToNoVideoNotice': function() {
+        $('#player').addClass("hidden");
+        $('#no-video-alert').removeClass("hidden");
+    },
+
+    'transitionToPlayer': function() {
+        $('#player').removeClass("hidden");
+        $('#no-video-alert').addClass("hidden");
     }
 }
 

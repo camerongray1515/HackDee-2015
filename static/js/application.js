@@ -63,7 +63,7 @@ function join_playlist(){
 }
 
 function get_next_video(){
-	var slug = "";
+	var slug = false;
 	var max = -999; // Todo: Fix this
 	for (var i = 0; i < playlist.length; i++){
 		if (playlist[i]["rank"].toString() > max){
@@ -72,8 +72,17 @@ function get_next_video(){
 		}
 	}
 
-	// Mark the video as played
-	videos.videoPlayed(slug);
+	// Mark the video as played if there was a video found and make,
+	// sure that the player is visible, else hide the player and
+	// show the no video alert
+	if (slug) {
+		videos.videoPlayed(slug);
+		ui.transitionToPlayer();
+		videos.playing = true;
+	} else {
+		videos.playing = false;
+		ui.transitionToNoVideoNotice();
+	}
 
 	return slug;
 
