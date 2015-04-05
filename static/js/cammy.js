@@ -102,6 +102,19 @@ var searching = {
     }
 }
 
+var voting = {
+    'submitVote': function() {
+        vote_direction = $(this).attr('data-vote-direction');
+
+        $.post("/api/vote/" + vote_direction + "/", {
+            "playlist_id": $('#playlist-id').val(),
+            "video_id": $(this).attr('data-video-id')
+        }, function(data) {
+            console.log(data);
+        });
+    }
+}
+
 var ui = {
     'showPlayer': function() {
         $("#player").removeClass("hidden");
@@ -111,4 +124,5 @@ var ui = {
 $(document).ready(function() {
     $("#search-form").submit(searching.doSearch);
     $("#btn-show-player").click(ui.showPlayer);
+    $("#tab_logic").on("click", ".btn-vote", voting.submitVote);
 });

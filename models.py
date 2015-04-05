@@ -23,6 +23,24 @@ class Playlist(Base):
         self.id = random_string
         self.name = name
 
+    @staticmethod
+    def get_videos(playlist_id):
+        videos = Video.query.filter(Video.playlist_id==playlist_id).order_by("rank desc")
+
+        playlist = []
+        for video in videos:
+            playlist_entry = {
+                "playlist_id": playlist_id,
+                "slug": video.slug,
+                "thumbnail_url": video.thumbnail_url,
+                "title": video.title,
+                "rank": video.rank
+            }
+
+            playlist.append(playlist_entry)
+
+        return playlist
+
     def __repr__():
         return "<Playlist ID:{0}, Name:{1}>".format(self.id, self.name)
 

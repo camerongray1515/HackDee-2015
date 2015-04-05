@@ -70,38 +70,24 @@ def add_video():
 
     v = Video(playlist_id, slug, thumbnail_url, title)
     db_session.add(v)
-    db_session.commit()
+    db_session.commit()    
 
-    # Now get the updated playlist and send it to the client
-    videos = Video.query.filter(Video.playlist_id==playlist_id).order_by("rank desc")
-
-    playlist = []
-    for video in videos:
-        playlist_entry = {
-            "playlist_id": playlist_id,
-            "slug": video.slug,
-            "thumbnail_url": video.thumbnail_url,
-            "title": video.title,
-            "rank": video.rank
-        }
-
-        playlist.append(playlist_entry)
-
+    # Publish to Redis so that all clients update playlist
     data = {
         "action": "update_playlist",
-        "playlist": playlist
+        "playlist": Playlist.get_videos(playlist_id)
     }
 
     redis.publish(playlist_id, json.dumps(data))
 
     return jsonify({"success": True})
 
-@api.route("/<up_down>/", methods=["POST"])
+@api.route("/vote/<up_down>/", methods=["POST"])
 def vote(up_down):
-    video = Playlist.query.get("video_id")
+    video_id = request.form.get("video_id")
+    playlist_id = request.form.get("playlist_id")
 
-    if video is None:
-        raise ExistenceError("Video does not exist.")
+    video = Video.query.filter(Video.playlist_id==playlist_id).filter(Video.slug==video_id).first()
 
     if up_down == "up":
         video.rank += 1
@@ -112,7 +98,15 @@ def vote(up_down):
 
     db_session.commit()
 
-    return jsonify(video.rank)
+    # Publish to Redis so that all clients update playlist
+    data = {
+        "action": "update_playlist",
+        "playlist": Playlist.get_videos(playlist_id)
+    }
+
+    redis.publish(playlist_id, json.dumps(data))
+
+    return jsonify({"success": True})
 
 @api.route("/delete")
 def remove_video(video_id):

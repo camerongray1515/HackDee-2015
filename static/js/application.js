@@ -39,7 +39,7 @@ function update_playlist(){
 
 		template = $("#playlist-entry-template").html();
         template = template.replace(/\[\[thumbnail_url\]\]/g, playlist[i]['thumbnail_url']);
-        template = template.replace(/\[\[video_id\]\]/g, playlist[i]['playlist_id']);
+        template = template.replace(/\[\[video_id\]\]/g, playlist[i]['slug']);
         template = template.replace(/\[\[video_title\]\]/g, playlist[i]['title']);
         template = template.replace(/\[\[rank\]\]/g, playlist[i]['rank']);
         $("#video_list").append(template);
