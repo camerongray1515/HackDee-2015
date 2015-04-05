@@ -58,7 +58,7 @@ body > div.container.body-content{
   color: black;
 }
 
-#player .hidden {
+.hidden {
   display: none !important;
 }
 
