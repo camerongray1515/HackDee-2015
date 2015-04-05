@@ -73,7 +73,7 @@ var messageSocket = {
     }
 }
 
-searching = {
+var searching = {
     'doSearch': function() {
         searchTerm = $("#searchItem").val();
 
@@ -102,6 +102,13 @@ searching = {
     }
 }
 
+var ui = {
+    'showPlayer': function() {
+        $("#player").removeClass("hidden");
+    }
+}
+
 $(document).ready(function() {
     $("#search-form").submit(searching.doSearch);
+    $("#btn-show-player").click(ui.showPlayer);
 });
