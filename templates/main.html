@@ -48,7 +48,7 @@
         if (!slug) {
           return;
         }
-        
+
         player.loadVideoById(slug, 0);
         curr_video = slug;
         player.playVideo();
@@ -124,7 +124,9 @@
              <tr>
                <td><img src="[[thumbnail_url]]"></td>
                <td>[[video_title]]</td>
-               <td>[[rank]]</td>
+               <td>
+                 [[rank]]
+               </td>
                <td>
                  <button class="btn btn-default btn-lg btn-vote" data-vote-direction="up" data-video-id="[[video_id]]">
                    <span class="glyphicon glyphicon-thumbs-up"></span>
