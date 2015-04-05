@@ -62,6 +62,10 @@ body > div.container.body-content{
   color: black;
 }
 
+#player {
+  display: none !important;
+}
+
 /* CSS Animated Loader - http://projects.lukehaas.me/css-loaders/ */
 /*
     The MIT License (MIT)
